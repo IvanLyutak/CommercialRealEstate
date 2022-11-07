@@ -1,0 +1,217 @@
+.viewAdvtPage {
+    margin-left: 5%;
+    margin-top: 20px;
+    width: 90%;
+    height: 350px;
+}
+
+.ImageAdvtPage {
+    width: 50%;
+    float: left;
+}
+
+.contentAdvtPage {
+    width: 50%;
+    height: 200px;
+    float: left;
+}
+
+.nameAdvtPage {
+    display: table;
+    height: 20%;
+    margin-left: 40px;
+}
+
+.nameAdvtTextPage {
+    font-weight: 500;
+    font-size: 20pt;
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.buildAdvtPage {
+    font-weight: 500;
+    font-size: 13pt;
+    height: 10%;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.addressAdvtPage {
+    font-weight: 300;
+    font-size: 13pt;
+    height: 10%;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.priceAdvtPage {
+    display: table;
+    height: 40%;
+    margin-left: 40px;
+}
+
+.priceAdvtTextPage {
+    font-weight: 500;
+    font-size: 16pt;
+    text-align: left;
+    vertical-align: bottom;
+    display: table-cell;
+}
+
+.squareAdvtPage {
+    font-weight: 300;
+    font-size: 13pt;
+    height: 20%;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.labelDescriptionAdvtPage {
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 20pt;
+    text-align: left;
+}
+
+.descriptionAdvtPage {
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 90%;
+    text-align: justify;
+}
+
+.viewButtonCall {
+    width: 100px;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.viewButtonCancel {
+    width: 5px;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+@media screen and (min-width: 950px) {
+    .ImageAdvtPage {
+        max-width: 450px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .ImageAdvtPage {
+        width: 60%;
+        float: left;
+    }
+    
+    .contentAdvtPage {
+        width: 40%;
+        height: 200px;
+        float: left;
+    }
+
+    .nameAdvtPage {
+        margin-left: 40px;
+    }
+
+    .buildAdvtPage {
+        margin-left: 40px;
+    }
+
+    .addressAdvtPage {
+        margin-top: 5px;
+        margin-left: 40px;
+    }
+
+    .priceAdvtPage {
+        margin-left: 40px;
+    }
+    
+    .squareAdvtPage {
+        margin-left: 40px;
+    }   
+
+}
+
+@media screen and (max-width: 770px) {
+
+        .viewAdvtPage {
+            margin-left: 5%;
+            margin-top: 20px;
+            width: 90%;
+
+            display: table;
+        }
+
+        .ImageAdvtPage {
+            width: 100%;
+        }
+
+        .contentAdvtPage {
+            width: 100%;
+            height: 250px;
+        }
+
+        .nameAdvtPage {
+            margin-top: 20px;
+            margin-left: 0px;
+        }
+
+        .nameAdvtTextPage {
+            font-weight: 500;
+            font-size: 15pt;
+            text-align: left;
+            display: table-cell;
+            vertical-align: middle;
+        }
+    
+        .buildAdvtPage {
+            font-weight: 500;
+            font-size: 11pt;
+            height: 10%;
+            text-align: left;
+            margin-left: 0px;
+        }
+    
+        .addressAdvtPage {
+            font-weight: 300;
+            font-size: 11pt;
+            height: 10%;
+            text-align: left;
+            margin-left: 0px;
+            margin-top: 5px;
+        }
+    
+        .priceAdvtTextPage {
+            font-weight: 500;
+            font-size: 14pt;
+            text-align: left;
+            vertical-align: bottom;
+            display: table-cell;
+        }
+
+        .priceAdvtPage {
+            height: 20%;
+            margin-left: 0px;
+        }
+        
+        .squareAdvtPage {
+            font-weight: 300;
+            font-size: 11pt;
+            height: 10%;
+            text-align: left;
+            margin-left: 0px;
+        }  
+        
+        .viewButtonCall {
+            width: 100%;
+            margin-left: 0px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+}

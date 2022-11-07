@@ -1,0 +1,41 @@
+$width: 20;
+
+body, html {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(#4f2187, #0e0031);
+}
+
+
+div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+@keyframes boxes {
+    0% { transform: translate(random($width) + px, 0); }
+    100% { transform: translate(random($width) + px, 0); }
+}
+
+@for $i from 0 to 100 {
+
+    $start_x: random($width);
+
+    @keyframes boxes_#{$i} {
+        0% { transform: translate($start_x + px, 0); }
+        50% { transform: translate(random($width) + px, 0); }
+        100% { transform: translate($start_x + px, 0); }
+    }
+
+    div:nth-child(#{$i}) {
+        height: percentage((random(60) + 10)/100);
+        width: random(60) + 50 + px ;
+        transform: translate(random($width) + px, 0)  ;
+        animation: boxes_#{$i} random(60) + 50 + s infinite;
+        background: rgba(30,144,255, .25);
+        animation-timing-function: linear;
+    }
+}

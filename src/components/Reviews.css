@@ -1,0 +1,72 @@
+.viewReview {
+    width: 70%;
+    background-color: white;
+    box-shadow: 0px 0px 7px rgba(0 ,0,0,0.2);
+    border-radius: 10px;
+    margin: 50px auto;
+}
+
+.nameReview {
+    width: calc( 100% - 50px );
+    height: calc( 50% - 10px );
+    min-height: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: table;
+}
+
+.nameTextReview {
+    vertical-align: bottom;
+    text-align: left;
+    display: table-cell;
+    font-weight: 500;
+}
+
+.textReview {
+    width: calc( 100% - 50px );
+    height: calc( 50% - 10px );
+    min-height: 60px;
+    display: table;
+    margin-left: calc( 5% + 30px );
+}
+
+.textTextReview {
+    vertical-align: middle;
+    text-align: left;
+    display: table-cell;
+}
+
+.EmodjiView {
+    display: inline-block;
+    vertical-align: middle;
+    width: 5%;
+    min-height: 40px;
+    margin-left: 10px;
+}
+
+.EmodjiTable {
+    display: table;
+    height: 100%;
+    width: 100%;
+    min-height: 39px;
+}
+
+.Emodji {
+    display: table-cell;
+    vertical-align: bottom;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.labelReview {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc( 95% - 20px);
+    margin-left: 10px;
+}
+
+.labelReviews {
+    font-weight: 500;
+    font-size: 3vw;
+}

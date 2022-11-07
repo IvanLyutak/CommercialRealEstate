@@ -1,0 +1,294 @@
+.backgroundAboutPage {
+    width: 90%;
+    margin-top: 50px;
+    height: calc( 100vh - 50px );
+    background: url('../../images/backgroundAboutPage.jpeg') center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+.viewTitleAboutPage {
+    margin-left: 80px;
+    margin-top: 40vh;
+    width: calc( 100% - 160px );
+    height: 150px;
+}
+
+.textTitleAboutPage {
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 500;
+    font-size: 3vw;
+}
+
+.textSubtitleAboutPage {
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 2vw;
+    margin-top: 10px
+}
+
+
+.viewOurVision {
+    width: 100%;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.viewImageOurVision {
+    margin-left: 0;
+    width: 60%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.imageOurVision {
+    width: 100%;
+    margin: auto;
+}
+
+.viewTextOurVision {
+    width: 40%;
+    display: table;
+}
+
+.viewInnerTextOurVision {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.viewInnerWithIndentTextOurVision {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.textTitleOurVision {
+    text-align: left;
+    font-weight:500;
+    font-size: 3vw;
+}
+
+.textSubtitleOurVision {
+    margin-top: 20px;
+    text-align: left;
+    font-weight: 200;
+    font-size: 2vw;
+}
+
+@media screen and (max-width: 800px) and (min-width: 500px) {
+    .textTitleAboutPage {
+        width: 100%;
+        text-align: left;
+        vertical-align: middle;
+        font-weight:500;
+        font-size: 4vw;
+    }
+    
+    .textSubtitleAboutPage {
+        width: 100%;
+        text-align: left;
+        vertical-align: middle;
+        font-weight: 300;
+        font-size: 3vw;
+        margin-top: 10px
+    }
+
+    .textTitleOurVision {
+        text-align: left;
+        font-weight:500;
+        font-size: 3vw;
+    }
+    
+    .textSubtitleOurVision {
+        margin-top: 20px;
+        text-align: left;
+        font-weight: 200;
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .textTitleAboutPage {
+        width: 100%;
+        text-align: left;
+        vertical-align: middle;
+        font-weight:500;
+        font-size: 6vw;
+    }
+    
+    .textSubtitleAboutPage {
+        width: 100%;
+        text-align: left;
+        vertical-align: middle;
+        font-weight: 200;
+        font-size: 5vw;
+        margin-top: 10px
+    }
+
+    .textTitleOurVision {
+        text-align: left;
+        font-weight:500;
+        font-size: 4vw;
+    }
+    
+    .textSubtitleOurVision {
+        margin-top: 20px;
+        text-align: left;
+        font-weight: 200;
+        font-size: 3vw;
+    }
+}
+
+
+.sloganView {
+    font-weight: 500;
+    font-size: 3vw;
+    margin-left: 50px;
+    width: calc( 100% - 100px );
+    height: calc( 100vh );
+    display: table;
+}
+
+.sloganText {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.buttonMoreReviews {
+    text-decoration: underline;
+    margin-bottom: 50px;
+}
+
+.buttonAddReview {
+    margin-bottom: 100px;
+    width: 200px;
+}
+
+
+.ViewMainFacts {
+    margin-top: 300px;
+}
+
+.leftViewFacts {
+    width: calc( 50% - 30px );
+    height: 200px;
+    position:fixed;
+    top: calc( 50% - 100px );
+    z-index:100;
+    visibility: hidden;
+    margin-left: 30px
+}
+
+.leftViewFactsLabel {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.leftViewFactsText {
+    margin-top: 10px;
+    font-weight: 200;
+}
+
+.rightViewFacts {
+    width: calc( 50% - 60px );
+    margin-left: calc( 50% + 30px );
+}
+
+.rightViewFactsTrue {
+    width: 100%;
+    height: 200px;
+}
+
+.rightViewFactsTitleTrue {
+    height: 50%;
+    width: 100%;
+    display: table;
+}
+
+.rightViewFactsTitleTrueInner {
+    color: yellow;
+    font-weight: 600;
+    font-size: 7vw;
+    text-align: center;
+    vertical-align: bottom;
+    display: table-cell;
+}
+
+.rightViewFactsTextTrue {
+    font-weight: 300;
+}
+
+.rightViewFactsFalse {
+    width: 100%;
+    height: 200px;
+}
+
+.rightViewFactsTitleFalse {
+    height: 50%;
+    width: 100%;
+    display: table;
+}
+
+.rightViewFactsTitleFalseInner {
+
+    text-align: center;
+    vertical-align: bottom;
+    display: table-cell;
+
+    font-weight: 200;
+    font-size: 4vw;
+}
+
+.rightViewFactsTextFalse {
+    font-weight: 200;
+}
+
+.reviews {
+    margin-top: 100px;
+}
+
+.video_company {
+    margin-top: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc( 100% - 20px);
+}
+
+.CustomDynamicBanner {
+    width: 100%;
+    height: 60px;
+}
+
+.my_atropos {
+    width: 90%;
+    margin: 50px auto;
+}
+
+
+
+
+#container2 {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+#container3 {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+#container4 {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+}

@@ -1,0 +1,35 @@
+.containerAccountPage {
+    width: 50%;
+    max-width: 500px;
+    margin: 100px auto;
+    box-shadow: 3px 3px 10px 6px rgba(0 ,0,0,0.06);
+
+    border-radius: 20px;
+}
+
+.containerInnerAccount {
+    width: 70%;
+    margin: 20px auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.login {
+    margin-left: 8px;
+}
+
+@media screen and (max-width: 770px) {
+    .containerAccountPage {
+        width: 70%;
+        margin: 100px auto;
+        box-shadow: 3px 3px 10px 6px rgba(0 ,0,0,0.06);
+        border-radius: 20px;
+    }
+
+    .containerInnerAccount {
+        width: 80%;
+        margin: 20px auto;
+        display: inline-block;
+        vertical-align: top;
+    }
+}

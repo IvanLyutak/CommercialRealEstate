@@ -1,0 +1,42 @@
+.sortList {
+    width: 30%;
+    margin-left: 5%;
+    max-width: 220px;
+    box-shadow: 0px 0px 5px rgba(0 ,0,0,0.2);
+    border-radius: 10px;
+}
+
+.upperElementAdsPage {
+    margin-left: 5%;
+    margin-top: 50px;
+    width: 90%;
+    display: table;
+}
+
+.titleAds {
+    width: 80%;
+    text-align: left;
+    vertical-align: middle;
+    float: left;
+}
+
+.foundView {
+    float: left;
+    width: 20%;
+    text-align: right;
+    vertical-align: middle;
+    font-size: 13pt;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 770px) {
+    .titleAds {
+        width: 70%;
+    }
+    
+    .foundView {
+        width: 30%;
+        font-size: 11pt;
+        font-weight: 400;
+    }
+}

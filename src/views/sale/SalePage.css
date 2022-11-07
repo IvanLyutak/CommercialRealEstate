@@ -1,0 +1,175 @@
+.viewNewAdvt {
+    display: table;
+    margin-left: 30px;
+    width: calc ( 100% - 60px );
+}
+
+.textNewAdvt {
+    width: 100%;
+    height: 60px;
+    text-align: left;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.containerAdvt {
+    width: calc( 75% - 30px );
+    margin-left: 30px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 0px 0px 3px rgba(0 ,0,0,0.06);
+    border-radius: 10px;
+}
+
+#typeAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#nameAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#typeObjectAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#addressAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#squareAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#descriptionAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#priceAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#contactAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.listAdvt {
+    display: inline-block;
+    width: calc( 25% - 40px );
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-top: 5px;
+    vertical-align: top;
+    position: sticky;
+    top: 0;  
+    cursor: pointer;
+}
+
+.containerAdvtMain {
+    margin: 0 auto;
+}
+
+.textNameAdvt {
+    text-align: left;
+}
+
+.groupSquare {
+    width: 40%;
+}
+
+.choiceTypeObject {
+    border: 1px solid rgb(219, 218, 218);
+    border-radius: 5px;    
+}
+
+@media screen and (max-width: 770px) {
+    .groupSquare {
+        width: 50%;
+    }
+}
+
+.mainContainerSalePage {
+    background-color: rgb(235, 235, 235);
+}
+
+.buttonPublish {
+    width: calc( 100% - 40px );
+    margin-bottom: 20px
+}
+
+.viewstageAdvtText {
+    display: table;
+    margin-left: 5px;
+}
+
+.stageAdvtText {
+    text-align: left;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.stageAdvtContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 5px;  
+    margin-top: 5px;
+}
+
+
+@media screen and (max-width: 770px) {
+
+    .viewstageAdvtText {
+        display: table;
+        min-width: 40px;
+    }
+    
+    .stageAdvtText {
+        text-align: left;
+        vertical-align: middle;
+        display: table-cell;
+        font-size: 2.5vw;
+    }
+
+    .containerAdvt {
+        width: calc( 75% - 5px );
+        margin-left: 5px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        display: inline-block;
+        background-color: white;
+        box-shadow: 0px 0px 3px rgba(0 ,0,0,0.06);
+        border-radius: 10px;
+    }
+
+    .listAdvt {
+        display: inline-block;
+        width: calc( 25% - 10px );
+        margin-left: 10px;
+        margin-right: 0px;
+        margin-top: 5px;
+        vertical-align: top;
+        position: sticky;
+        top: 0;  
+        cursor: pointer;
+    }
+}

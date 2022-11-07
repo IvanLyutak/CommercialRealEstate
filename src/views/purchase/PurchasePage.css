@@ -1,0 +1,164 @@
+.backgroundPurchaseImage {
+    width: 100%;
+    height: 500px;
+    background: url('../../images/background_purchase.jpg') center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.searchField {
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.searchTypeRoom {
+    width: calc(25% - 1px);;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.searchAreaRoom {
+    width: 25%;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.searchPriceRoom {
+    width: calc(25% - 1px);
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.searchRegionRoom {
+    width: 25%;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.selectForm {
+    border-radius: 10px 0 0 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.address_input {
+    height: 100%;
+    border-radius: 0 10px 10px 0;
+    box-shadow: none;
+}
+
+.searchAllField {
+    width: 90%;
+    height: 120px;
+    margin: 220px auto;
+}
+
+.buttonViewSearch {
+    width: 25%;
+    height: 60px;
+    margin-left: 75%;
+    margin-right: 0;
+}
+
+.buttonSearch {
+    width: 60%;
+    margin-top: 5px;
+    margin-left: 40%;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.intermediateElement {
+    width: 1px;
+    height: 100%;
+    background-color: rgb(216, 216, 216);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.viewBestRealEstate {
+    display: table;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: calc ( 100% - 60px );
+}
+
+.textBestRealEstate {
+    width: 100%;
+    height: 60px;
+    text-align: left;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.gridCards {
+    margin-top: 20px;
+    margin-left: 30px;
+    width: calc ( 100% - 60px );
+    margin-right: 30px;
+}
+
+
+.orderConsultion {
+    margin: 40px auto;
+    width: 60%;
+    max-width: 500px;
+}
+
+.agreement {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.viewPurchaseOptionsMain {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: calc ( 100% - 60px );
+}
+
+.textPurchaseOptions {
+    width: 100%;
+    height: 60px;
+    margin-top: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.viewPurchaseOptions {
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media screen and (max-width: 770px) {
+    .address_input {
+        height: 100%;
+        border-radius: 0 10px 10px 0;
+        box-shadow: none;
+        font-size: 2.5vw;
+    }
+
+    .buttonSearch {
+        width: 100%;
+        margin-top: 5px;
+        margin-left: 0;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .searchAllField {
+        width: 95%;
+        height: 120px;
+        margin: 220px auto;
+    }
+}
+
+.cards {
+    min-height: 160px;
+}
