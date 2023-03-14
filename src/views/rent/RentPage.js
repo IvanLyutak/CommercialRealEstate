@@ -91,7 +91,8 @@ class RentPage extends React.Component {
     search() {
         console.log("Click")
         console.log(window.location)
-        window.location = window.location.origin + '/ads/?type=office'
+
+        window.location = window.location.origin + `/ads/?type=Аренда&typeObject=${this.state.selectedType}&price_from=${this.state.selectedPriceFrom}&price_to=${this.state.selectedPriceBefore}&square_from=${this.state.selectedSquareFrom}&square_to=${this.state.selectedSquareBefore}&address=${document.getElementsByClassName('address_input')[0].value}`
     }
 
     render() {

@@ -14,7 +14,25 @@ import AccountPage from "./views/account/AccountPage"
 import AdsPage from "./views/ads/AdsPage"
 import AdvtPage from "./views/advt/advtPage"
 
+import Logo from "./images/logo.svg"
+
+import { ReactBot, addBotMessage } from "@cozimacode/react-bot";
+import "@cozimacode/react-bot/dist/styles.css";
+
+import sendBotMessage from "./services/bot"
+
 function App() {
+
+  const handleUserInput = (input) => {
+    console.log(`New message incoming! ${input}`);
+
+    sendBotMessage(input, (data) =>{
+      setTimeout(function() {
+        addBotMessage(data);
+      }.bind(this), 300)
+    })
+  };
+
   return (
     <div className="App">
       <Router>
@@ -43,6 +61,11 @@ function App() {
           </div>
         </MDBFooter>
       </div>
+      <ReactBot 
+          handleUserInput={handleUserInput}
+          title="Realty Бот"
+          messagePlaceHolder="Введите сообщение..." 
+      />
     </div>
   );
 }

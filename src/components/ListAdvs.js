@@ -1,6 +1,6 @@
 import "./ListAdvs.css"
 
-function ListAdvs({ads, choiceAdvt}) {
+function ListAdvs({ads, choiceAdvt, type}) {
 
     return (
         <>
@@ -17,11 +17,19 @@ function ListAdvs({ads, choiceAdvt}) {
                     </div>
                     <div className="buildAdvt">  { ad["build"] } </div>
                     <div className="addressAdvt"> { ad["address"] }</div>
-                    <div className="priceAdvt"> 
-                        <div className="priceAdvtText">
-                            { ad["price"] } ₽/мес.
+                    {type === 'Аренда' ? (<>
+                        <div className="priceAdvt"> 
+                            <div className="priceAdvtText">
+                                { ad["price"] } ₽/мес.
+                            </div>
                         </div>
-                    </div>
+                    </>) : (<>
+                        <div className="priceAdvt"> 
+                            <div className="priceAdvtText">
+                                { ad["price"] } ₽.
+                            </div>
+                        </div>
+                    </>)}
                     <div className="squareAdvt"> { ad["square"] } м <sup><small>2</small></sup> </div>
                 </div>
             </div>

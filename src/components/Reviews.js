@@ -5,13 +5,13 @@ function Reviews({reviews}) {
   return (
     <>
     <div className="labelReviews">
-                    Наши отзывы
+          Наши отзывы
     </div>
       {reviews.map((review) => (
         <div className="viewReview" key={Math.random()}>
                 <div className="EmodjiView">
                     <div className="EmodjiTable">
-                        <div className="Emodji"> {review.image} </div>
+                        <div className="Emodji"> {review.emotion} </div>
                     </div>
                 </div>
                 <div className="labelReview">

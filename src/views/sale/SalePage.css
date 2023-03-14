@@ -35,6 +35,12 @@
     margin-left: 20px;
 }
 
+#subtitleAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
 #typeObjectAdvt {
     width: calc( 100% - 40px );
     margin-top: 30px;
@@ -48,6 +54,12 @@
 }
 
 #squareAdvt {
+    width: calc( 100% - 40px );
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#imagesAdvt {
     width: calc( 100% - 40px );
     margin-top: 30px;
     margin-left: 20px;

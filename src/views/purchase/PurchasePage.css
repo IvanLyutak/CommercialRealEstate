@@ -13,7 +13,7 @@
 }
 
 .searchTypeRoom {
-    width: calc(25% - 1px);;
+    width: calc(25% - 1px);
     height: 100%;
     display: inline-block;
     vertical-align: middle;

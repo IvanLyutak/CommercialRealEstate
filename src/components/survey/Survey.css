@@ -1,0 +1,38 @@
+.main_survey {
+    box-shadow: 0px 0px 5px rgba(0 ,0,0,0.2);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.survey {
+    text-align: left;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.questionSurvey {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.radioSurvey {
+    margin-right: 10px;
+}
+
+.buttonVote {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: calc( 100% - 30px )
+}
+
+.resultSurvey {
+    height: 150px;
+    display: table;
+    width: 100%;
+}
+
+.resultSurvey .text{
+    display: table-cell;
+    vertical-align: middle;
+}

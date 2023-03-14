@@ -29,14 +29,16 @@ export default function Slider({images}) {
 
     return (
         <div className="slider">
-            <Carousel
+            {images !== undefined ? (<>
+                <Carousel
                 images={images}
                 setWidth={setWidth}
                 xPosition={xPosition}
                 resizePage={resizePage}
                 handleClickPrev={handleClickPrev}
                 handleClicknext={handleClicknext}
-            />
+                />
+            </>) : (<></>)}
         </div>
     );
 }

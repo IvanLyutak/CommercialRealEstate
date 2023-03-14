@@ -5,12 +5,20 @@ import "./AboutPage.css"
 import Reviews from "../../components/Reviews"
 
 import ImageOurVision from "../../images/about_image.jpeg"
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 import video from "../../video/video.mp4"
 
 import 'atropos/css'
 import Atropos from 'atropos/react';
+
+import Survey from '../../components/survey/Survey';
+import ReviewModal from '../../components/modals/ReviewModal';
+import insertReview, { listReview } from '../../services/reviews';
+
+
+import getSurvey, {insertResult, selectionСriteriaRealty, agencySelectionCriteria, interestingInformation} from "../../services/survey"
+
 
 export default class AboutPage extends React.Component {
 
@@ -18,34 +26,157 @@ export default class AboutPage extends React.Component {
         super()
 
         this.state = {
-            reviews: [
-                {"name": "Кирилл", "text": "Классный сервис, нашел офис своей мечты.", "image": "😀"},
-                {"name": "Матвей", "text": "В целом неплохой сервис, но есть некоторые минусы.", "image": "🙂"},
-                {"name": "Роман", "text": "Плохой сайт, не смог найти подходящее для себя предложение.", "image": "🙁"}
-            ],
+            price: 0,
+            reviews: [],
             facts: [
                {id: "fact1", "title": "5 200 000", "text": "1 200 000 кв. м. - общая площадь объетов недвижимости", "status": false}, 
                {id: "fact2", "title": "5 000", "text": "5000 - объявлений по продаже недвижимости", "status": false},
                {id: "fact3", "title": "3 000", "text": "3000 - объявлений по аренде недвижимости", "status": false}
-            ]
+            ],
+            questions: [],
+            question: {},
+            counter: 0,
+            reviewModalShow: false,
+            countReviews: 0
         }
 
         this.handleScroll = this.handleScroll.bind(this);
+        this.vote = this.vote.bind(this);
+        this.count = this.count.bind(this);
+    }
+
+    rename(obj, oldName, newName) {
+        if(!obj.hasOwnProperty(oldName)) {
+            return false;
+        }
+      
+        obj[newName] = obj[oldName];
+        delete obj[oldName];
+        return true;
+    }
+
+    setReviewModalShow(e) {
+      this.setState({reviewModalShow: e})
     }
 
     componentDidMount  = () => {
 
-        this.print_charts()
-        window.addEventListener('scroll', this.handleScroll)
+        selectionСriteriaRealty((data) =>{         
+            this.print_charts_selectionСriteriaRealty(data)
+        })
+
+        agencySelectionCriteria((data) =>{         
+          this.print_charts_agencySelectionCriteria(data)
+        })
+
+        interestingInformation((data) =>{         
+          this.print_charts_interestingInformation(data)
+        })
+
+        listReview((data) => {
+
+            if (data !== "error" && data !== null && Object.keys(data).length > 0) {
+              console.log("true")
+              this.setState({countReviews: Object.keys(data).length})
+              for (const [key, value] of Object.entries(data)) {
+                console.log(value)
+                if (value["emotion"] === "positive") {
+                    value["emotion"] = "😀"
+                } else if (value["emotion"] === "negative") {
+                    value["emotion"] = "🙁"
+                }
+                else {
+                    value["emotion"] = "🙂"
+                }
+            }
+            this.setState({reviews: data})
+            }
+        })
         
+
+        getSurvey((data) =>{      
+          
+            console.log(Object.keys(data[this.state.counter])[0])
+
+            this.rename(data[this.state.counter], Object.keys(data[this.state.counter])[0], (this.state.counter+1) + ") " + Object.keys(data[this.state.counter])[0])
+
+            this.setState({
+              questions: data,
+              question: data[this.state.counter]
+            })
+          
+        })
+
+        window.addEventListener('scroll', this.handleScroll)
         return () => {
-            window.removeEventListener('scroll', this.handleScroll)
+          window.removeEventListener('scroll', this.handleScroll)
         }
     }
 
     componentWillUnmount = () => {
         window.removeEventListener('scroll', this.handleScroll)
 
+    }
+
+    vote(e) {
+        console.log("vote", e)
+
+        console.log("Вопрос:", Object.keys(this.state.questions[this.state.counter])[0])
+        console.log("Ответ:", e)
+
+        if (this.state.counter < Object.keys(this.state.questions).length - 1) {
+            insertResult(Object.keys(this.state.questions[this.state.counter])[0].split(') ')[1], e, (data) =>{      
+          
+                this.setState({counter: this.state.counter+1})
+
+                this.rename(this.state.questions[this.state.counter + 1], Object.keys(this.state.questions[this.state.counter + 1])[0], (this.state.counter+2) + ") " + Object.keys(this.state.questions[this.state.counter + 1])[0])            
+                this.setState({question: this.state.questions[this.state.counter + 1]})
+          
+            })
+        } else {
+            insertResult(Object.keys(this.state.questions[this.state.counter])[0].split(') ')[1], e, (data) => {      
+                console.log("Результат")
+                this.setState({question: "result"})
+            })
+        }
+    }
+
+
+    count() {
+
+      console.log(document.getElementById("price_square").value)
+
+      let price_square = document.getElementById("price_square").value
+      let square = document.getElementById("square").value
+      let price_place = document.getElementById("price_place").value
+      let count_place = document.getElementById("count_place").value
+      var price = price_square * square + price_place * count_place
+
+      if (isNaN(price)) {
+        price = "Введите числа"
+      }
+      this.setState({price: price})
+    }
+
+    sendReview = (text) => {
+        this.setReviewModalShow(false)
+        insertReview(text, (data) => {
+            if (data !== "error" && data !== null && Object.keys(data).length > 0) {
+              this.setState({countReviews: Object.keys(data).length})
+              for (const [key, value] of Object.entries(data)) {
+                console.log(value)
+                if (value["emotion"] === "positive") {
+                    value["emotion"] = "😀"
+                } else if (value["emotion"] === "negative") {
+                    value["emotion"] = "🙁"
+                }
+                else {
+                    value["emotion"] = "🙂"
+                }
+             }
+             this.setState({reviews: data})
+            }
+        })
     }
 
     handleScroll = () => {
@@ -73,7 +204,7 @@ export default class AboutPage extends React.Component {
         }
     }
 
-    print_charts() {
+    print_charts_selectionСriteriaRealty(data) {
         Highcharts.chart('container1', {
             chart: {
               type: 'pie',
@@ -84,12 +215,7 @@ export default class AboutPage extends React.Component {
               }
             },
             title: {
-              text: 'Доли продаж комерческой недвижимости, 2022'
-            },
-            subtitle: {
-              text: 'Source: ' +
-                '<a href="https://www.counterpointresearch.com/global-smartphone-share/"' +
-                'target="_blank">Counterpoint Research</a>'
+              text: 'Главный критерий при выборе недвижимости'
             },
             accessibility: {
               point: {
@@ -113,22 +239,19 @@ export default class AboutPage extends React.Component {
             series: [{
               type: 'pie',
               name: 'Share',
-              data: [
-                ['Офисы', 23],
-                ['Коворкинги', 18],
-                ['Спортивные объекты', 9],
-                ['Торговые площади', 8],
-                ['Другие', 30]
-              ]
+              data: data
             }]
           });
+    }
+
+    print_charts_agencySelectionCriteria(data) {
 
           const chart = Highcharts.chart('container2', {
             title: {
-              text: 'Продажи коммерческой недвижимости в 2022'
+              text: 'Главный критерий при выборе агентства недвижимости'
             },
             xAxis: {
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+              categories: data["categories"]
             },
             yAxis: {
                 title: {
@@ -140,114 +263,13 @@ export default class AboutPage extends React.Component {
               type: 'column',
               name: 'Количество',
               colorByPoint: true,
-              data: [5412, 4977, 4730, 4437, 3947, 3707, 4143, 3609,
-                3311, 3072, 2899, 2887],
+              data: data["data"],
               showInLegend: false
             }]
           });
+      }
 
-          Highcharts.chart('container3', {
-            chart: {
-              type: 'column'
-            },
-            title: {
-              text: 'Аренда коммерческой недвижимости'
-            },
-            xAxis: {
-              categories: ['2021/22', '2020/21', '2019/20', '2018/19', '2017/18']
-            },
-            yAxis: {
-              min: 0,
-              title: {
-                text: 'Доля'
-              }
-            },
-            tooltip: {
-              pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-              shared: true
-            },
-            plotOptions: {
-              column: {
-                stacking: 'percent'
-              }
-            },
-            series: [{
-              name: 'Офисы',
-              data: [4, 4, 2, 4, 4]
-            }, {
-              name: 'Коворкинги',
-              data: [0, 4, 3, 2, 3]
-            }, {
-              name: 'Торговые площади',
-              data: [1, 2, 2, 1, 2]
-            }]
-          });
-
-          Highcharts.chart('container4', {
-            chart: {
-              type: 'column'
-            },
-            title: {
-              text: 'Продажа недвижимости'
-            },
-            xAxis: {
-              categories: [
-                '2013',
-                '2014',
-                '2015',
-                '2016',
-                '2017',
-                '2018',
-                '2019',
-                '2020',
-                '2021',
-                '2022'
-              ],
-              crosshair: true
-            },
-            yAxis: {
-              title: {
-                useHTML: true,
-                text: 'Количество'
-              }
-            },
-            tooltip: {
-              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-              footerFormat: '</table>',
-              shared: true,
-              useHTML: true
-            },
-            plotOptions: {
-              column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-              }
-            },
-            series: [{
-              name: 'Офисы',
-              data: [13, 16, 14, 12, 14, 17, 18,
-                20, 22, 19]
-          
-            }, {
-              name: 'Коворкинги',
-              data: [5, 12, 11, 14, 15, 16, 10,
-                9, 14, 11]
-          
-            }, {
-              name: 'Спортивные объекты',
-              data: [10, 9, 11, 15, 14, 18, 10,
-                9, 19, 8]
-          
-            }, {
-              name: 'Клубы',
-              data: [4, 7, 5, 9, 4, 7, 10, 14,
-                19, 17]
-          
-            }]
-          });
-
+      print_charts_interestingInformation(data) {
           Highcharts.chart('container5', {
             chart: {
               plotBackgroundColor: null,
@@ -256,7 +278,7 @@ export default class AboutPage extends React.Component {
               type: 'pie'
             },
             title: {
-              text: 'Где находится наша недвижимость?'
+              text: 'Самые популярные запросы'
             },
             tooltip: {
               pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -279,31 +301,7 @@ export default class AboutPage extends React.Component {
             series: [{
               name: 'Города',
               colorByPoint: true,
-              data: [{
-                name: 'Москва',
-                y: 40
-              },  {
-                name: 'Санкт-Петербург',
-                y: 25
-              }, {
-                name: 'Нижний Новгород',
-                y: 7
-              }, {
-                name: 'Новосибирск',
-                y: 5
-              },  {
-                name: 'Владивосток',
-                y: 3
-              }, {
-                name: 'Курск',
-                y: 10
-              }, {
-                name: 'Старополь',
-                y: 5
-              }, {
-                name: 'Другие',
-                y: 5
-              }]
+              data: data
             }]
           });
     }
@@ -377,16 +375,49 @@ export default class AboutPage extends React.Component {
                 </video>
 
                 <div className="reviews"><Reviews reviews={this.state.reviews}/> </div>
-                <div className="buttonMoreReviews">  Читать все 39 отзывов </div>
-                <Button variant="warning" className="buttonAddReview"> Написать отзыв </Button>
+                <div className="buttonMoreReviews">  Читать все {this.state.countReviews} отзыва </div>
+                <Button variant="warning" className="buttonAddReview" onClick={ () => this.setReviewModalShow(true)}> Написать отзыв </Button>
                 
+                <ReviewModal
+                  show={this.state.reviewModalShow}
+                  onHide={() => this.setReviewModalShow(false)}
+                  sendReview={this.sendReview}
+                />
+
                 <figure className="highcharts-figure">
                     <div id="container1"></div>
                     <div id="container2"></div>
-                    <div id="container3"></div>
-                    <div id="container4"></div>
                     <div id="container5"></div>
                 </figure>
+
+                <div className="classNeed">
+                <h5>Расчитайте стоимость</h5>
+                <div >
+                        <h5 className="textNameAdvt" style={{marginTop: "30px"}}> Стоимость квадратного метра </h5>
+                        <Form.Control placeholder="Введите цену квадратного метра" onChange={() => this.count()} id="price_square"/> 
+                </div>
+                <div>
+                        <h5 className="textNameAdvt" style={{marginTop: "30px"}}> Площадь офиса </h5>
+                        <Form.Control placeholder="Введите площадь" onChange={() => this.count()} id="square"/> 
+                </div>
+                <div>
+                        <h5 className="textNameAdvt" style={{marginTop: "30px"}}> Стоимость парковочного места </h5>
+                        <Form.Control placeholder="Введите цену парковочного места" onChange={() => this.count()} id="price_place"/> 
+                </div>
+                <div>
+                        <h5 className="textNameAdvt" style={{marginTop: "30px"}}> Количество парковочных мест </h5>
+                        <Form.Control placeholder="Введите количество машиномест" onChange={() => this.count()} id="count_place"/> 
+                </div>
+
+                <div>
+                        <h5 className="textNameAdvt" style={{marginTop: "30px", marginBottom: "30px"}}> Итоговая цена</h5>
+                        <h4 className="textNameAdvt"> {this.state.price} руб.</h4>
+                </div>
+
+                <h5 className="surveyNameAdvt" style={{marginTop: "40px"}}> Пройдите опрос </h5>
+                    <Survey vote={(e) => this.vote(e)} questions={this.state.question}/>
+                </div>
+
             </>
         )
     }

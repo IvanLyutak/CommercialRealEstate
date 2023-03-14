@@ -1,0 +1,25 @@
+version: '3'
+services:
+   
+  api:
+    build: ./api
+    image: commercialrealstate-api
+    networks:
+      - my_net
+  client:
+    build: .
+    image: commercialrealstate-client
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3000:80"
+    networks:
+      - my_net
+
+networks:
+  my_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16

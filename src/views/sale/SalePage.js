@@ -4,7 +4,7 @@ import { Form, Pagination, InputGroup, Button } from 'react-bootstrap';
 import "./SalePage.css"
 import DropdownList from "../../components/DropdownList"
 import CompleteStageIcon from "../../components/CompleteStageIcon"
-
+import uploadAd from '../../services/ads';
 
 export default class SalePage extends React.Component {
 
@@ -40,6 +40,7 @@ export default class SalePage extends React.Component {
         this.scrollToMyRef = this.scrollToMyRef.bind(this);
         this.changeOfActivity = this.changeOfActivity.bind(this);
         this.changeText = this.changeText.bind(this);
+        this.publishAd = this.publishAd.bind(this);
     }
 
     setSelectedType(e){
@@ -84,6 +85,61 @@ export default class SalePage extends React.Component {
         })
     }
 
+    publishAd() {
+        console.log(this.state.isActiveSale)
+        console.log(document.getElementsByClassName('valueNameAdvt')[0].value)
+        console.log(this.state.selectedType)
+        console.log(document.getElementsByClassName('valueAddressAdvt')[0].value)
+        console.log(document.getElementsByClassName('valueSquareAdvt')[0].value)
+        console.log(document.getElementsByClassName('valueDescriptionAdvt')[0].value)
+        console.log(this.state.selectedFile)
+        console.log(document.getElementsByClassName('valuePriceAdvt')[0].value)
+        console.log(document.getElementsByClassName('valuePhoneAdvt')[0].value)
+        console.log(document.getElementsByClassName('valueEmailAdvt')[0].value)
+
+        var typeAd = ""
+        if (this.state.isActiveSale === true) {
+            typeAd = "Продажа"
+        } else {
+            typeAd = "Аренда"
+        }
+
+        console.log(this.state.selectedFile)
+        
+        console.log(Array.from(this.state.selectedFile))
+        const formData = new FormData();
+
+        for (const image of this.state.selectedFile) {
+            formData.append('images', image);
+        }
+
+        const data = {
+            "typeAd": typeAd,
+            "title": document.getElementsByClassName('valueNameAdvt')[0].value,
+            "subtitle": document.getElementsByClassName('valueSubtitleAdvt')[0].value,
+            "typeObject": this.state.selectedType,
+            "address": document.getElementsByClassName('valueAddressAdvt')[0].value,
+            "square": Number(document.getElementsByClassName('valueSquareAdvt')[0].value),
+            "description": document.getElementsByClassName('valueDescriptionAdvt')[0].value,
+            "images": "",
+            "price": Number(document.getElementsByClassName('valuePriceAdvt')[0].value),
+            "phone": document.getElementsByClassName('valuePhoneAdvt')[0].value,
+            "email": document.getElementsByClassName('valueEmailAdvt')[0].value
+        }
+
+        console.log(data)
+        formData.append(
+            "metadata",
+            JSON.stringify(data)
+        );
+
+        console.log(formData)
+
+        uploadAd(formData, (data) => {
+            console.log(data)
+        })
+    }
+
     render() {
         return (
             <div className="mainContainerSalePage">
@@ -105,7 +161,11 @@ export default class SalePage extends React.Component {
                     </div>
                     <div id="nameAdvt" ref={this.nameAdvtRef}>
                         <h5 className="textNameAdvt"> Название </h5>
-                        <Form.Control placeholder="Название объекта" onChange={e => this.changeText(e, this.nameAdvtRef)}/> 
+                        <Form.Control placeholder="Название объекта" onChange={e => this.changeText(e, this.nameAdvtRef)} className="valueNameAdvt"/> 
+                    </div>
+                    <div id="subtitleAdvt">
+                        <h5 className="textNameAdvt"> Подзаголовок </h5>
+                        <Form.Control placeholder="Подзаголовок"  className="valueSubtitleAdvt"/> 
                     </div>
                     <div id="typeObjectAdvt" ref={this.typeObjectAdvtRef} >
                         <h5 className="textNameAdvt"> Объект </h5>
@@ -115,23 +175,29 @@ export default class SalePage extends React.Component {
                     </div>
                     <div id="addressAdvt" ref={this.addressAdvtRef}>
                         <h5 className="textNameAdvt"> Адрес помещения </h5>
-                        <Form.Control placeholder="Город, район и адрес" onChange={e => this.changeText(e, this.addressAdvtRef)}/> 
+                        <Form.Control placeholder="Город, район и адрес" onChange={e => this.changeText(e, this.addressAdvtRef)} className="valueAddressAdvt"/> 
                     </div>
                     <div id="squareAdvt" ref={this.squareAdvtRef}>
                         <h5 className="textNameAdvt"> Общая площадь </h5>
                         <InputGroup className="groupSquare">
-                            <Form.Control placeholder="" onChange={e => this.changeText(e, this.squareAdvtRef)}/>
+                            <Form.Control placeholder="" onChange={e => this.changeText(e, this.squareAdvtRef)} className="valueSquareAdvt"/>
                             <InputGroup.Text>м <sup><small>2</small></sup></InputGroup.Text>
                         </InputGroup> 
                     </div>
                     <div id="descriptionAdvt" ref={this.descriptionAdvtRef}>
                         <h5 className="textNameAdvt"> Описание </h5>
-                        <Form.Control as="textarea" rows={6} onChange={e => this.changeText(e, this.descriptionAdvtRef)}/>
+                        <Form.Control as="textarea" rows={6} onChange={e => this.changeText(e, this.descriptionAdvtRef)} className="valueDescriptionAdvt"/>
+                    </div>
+                    <div id="imagesAdvt">
+                        <h5 className="textNameAdvt"> Изображения объекта (.jpeg) </h5>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Control type="file" accept=".jpeg" multiple onChange={e => { this.setState({ selectedFile: e.target.files })}}/>
+                        </Form.Group>
                     </div>
                     <div id="priceAdvt" ref={this.priceAdvtRef}>
                     <h5 className="textNameAdvt"> Цена </h5>
                         <InputGroup className="groupSquare">
-                            <Form.Control placeholder="" onChange={e => this.changeText(e, this.priceAdvtRef)}/>
+                            <Form.Control placeholder="" onChange={e => this.changeText(e, this.priceAdvtRef)} className="valuePriceAdvt"/>
                             <InputGroup.Text> ₽ </InputGroup.Text>
                         </InputGroup> 
                     </div>
@@ -139,13 +205,13 @@ export default class SalePage extends React.Component {
                         <h5 className="textNameAdvt"> Контакты </h5>
 
                         <h6 className="textNameAdvt"> Номер телефона </h6>
-                        <Form.Control placeholder="+7 915 175 6404" /> 
+                        <Form.Control placeholder="+7 915 175 6404" className="valuePhoneAdvt"/> 
                         <br />
                         <h6 className="textNameAdvt"> Email </h6>
-                        <Form.Control placeholder="lyutakivan802@gmail.com" /> 
+                        <Form.Control placeholder="lyutakivan802@gmail.com" className="valueEmailAdvt"/> 
                     </div>
 
-                    <Button variant="primary" size="lg" className="buttonPublish">
+                    <Button variant="primary" size="lg" className="buttonPublish" onClick={this.publishAd}>
                         Опубликовать
                     </Button>
                 </div>
