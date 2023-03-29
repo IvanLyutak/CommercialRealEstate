@@ -51,7 +51,7 @@ export default class AdvtPage extends React.Component {
 
     render() {
         return (
-            <>
+            <div className='advtPage'>
                 <div className="viewButtonCancel"> 
                     <Button variant="warning" onClick={this.cancel}> Назад </Button>
                 </div>
@@ -94,7 +94,7 @@ export default class AdvtPage extends React.Component {
                 <div className="descriptionAdvtPage">
                     {this.state.data["text"]}
                 </div>
-            </>
+            </div>
         )
     }
 }

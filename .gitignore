@@ -37,6 +37,9 @@ env.bak/
 venv.bak/
 pythonenv*
 
-video.mp4
+/ssl
 
-/api/images/
+docker-compose.yml
+
+
+video.mp4

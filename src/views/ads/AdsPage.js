@@ -72,7 +72,7 @@ export default class AdsPage extends React.Component {
 
     render() {
         return (
-            <>
+            <div className='adsPage'>
                 {d["type"] === "Аренда" ? (<>
                     <div className="upperElementAdsPage">
                         <h3 className="titleAds"> Арендовать {d["typeObject"].toLowerCase()} </h3>
@@ -102,7 +102,7 @@ export default class AdsPage extends React.Component {
                         <ListAdvts ads={this.state.ads} choiceAdvt={this.choiceAdvt} type={d["type"]}/>
                     </div>
                 </>)}
-            </>
+            </div>
         )
     }
 }

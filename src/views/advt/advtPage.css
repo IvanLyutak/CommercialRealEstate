@@ -1,3 +1,7 @@
+.advtPage {
+    min-height: calc( 100vh - 140px );
+}
+
 .viewAdvtPage {
     margin-left: 5%;
     margin-top: 20px;

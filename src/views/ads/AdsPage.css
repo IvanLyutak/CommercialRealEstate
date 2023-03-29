@@ -1,3 +1,7 @@
+.adsPage {
+    min-height: calc( 100vh - 170px );
+}
+
 .sortList {
     width: 30%;
     margin-left: 5%;

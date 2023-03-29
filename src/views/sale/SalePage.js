@@ -137,6 +137,7 @@ export default class SalePage extends React.Component {
 
         uploadAd(formData, (data) => {
             console.log(data)
+            window.location.reload()
         })
     }
 
